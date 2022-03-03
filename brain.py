@@ -47,24 +47,24 @@ data = {
         },
         {
             "tag" : "network_status",
-            "patterns" : [ "quel est l état du réseau", "quoi de neuf dans le réseau","quel est le statut de mon réseau",
+            "patterns" : [ "quel est l état de fonctionnement du réseau", "quoi de neuf dans le réseau","quel est le statut de mon réseau",
             "ce qu'il y a de nouveau dans mon réseau"
-
             ], 
             "responses" : ["l'état du réseau est le suivant","l'état est le suivant","le statut est le suivant"]
         },
         {
             "tag" : "activity_status",
-            "patterns" : [ "je voudrais les activités du réseau","statut du réseau","rapport des alertes","information du jour"
+            "patterns" : [ "je voudrais les activités dans le réseau", "quel est le statut du réseau",
+                    "quel est le rapport des alertes","quelles sont les informations du jour", "alertes dans le réeau"
             ], 
-            "responses" : ["les activités sont"]
+            "responses" : ["les activités sont", "Le rapport est le suivant"]
         },
         {
             "tag" : "yesterday_activity_status",
             "patterns" : [ "que s'est il passé hier dans mon réseau","qu'il y avait il dans mon réseau hier",
                 "les actualités d'hier", "combien d'analyse ont été effectuées hier","statut d'hier"
             ], 
-            "responses" : ["les activités d'hier sont"]
+            "responses" : ["Liste des activités d'hier"]
         },
         {
             "tag" : "general_activity_status",
@@ -74,24 +74,25 @@ data = {
         },
         {
             "tag" : "machine_network_summary",
-            "patterns" : ["rapport du monitoring réseau", "rapport des débits","rapport de la bande passante","rapport prtg",
-            "rapport du réseau"
+            "patterns" : ["rapport du monitoring réseau", "rapport du débit réseau","rapport de la bande passante","rapport prtg",
+                "performances du réseau", "fonctionnement du réseau", "métrique de fonctionnement du réseau",
+                "métriques réseau" 
             ], 
             "responses" : ["le rapport du monitoring est le suivant"]
         },
         {
             "tag" : "machine_system_summary",
-            "patterns" : ["rapport du monitoring système","rapport cpu","rapport processeur","rapport ram",
-            "rapport système", "rapport disque", "rapport des machines du système"
+            "patterns" : ["donne moi rapport de fonctionnement système","métrique cpu","métrique processeur","métrique ram",
+            "métrique système", "métrique disque", "rapport des machines du système"
             ], 
             "responses" : ["le rapport du système est le suivant"]
         },
         {
             "tag" : "machine_services_summary",
-            "patterns" : ["rapport des services", "donne moi le rapport du service","rapport service","donne moi un rapport global du service"
-
+            "patterns" : ["rapport du fonctionnement des services", "donne moi le rapport des services","rapport service", 
+                "liste des services", "régime de fonctionnement des services"
             ], 
-            "responses" : ["le rapport de service est le suivant"]
+            "responses" : ["le rapport de fonctionnement des services est le suivant"]
         },
         {
             "tag" : "red_code",
@@ -246,7 +247,7 @@ def get_intent(intents_list, dataset_json_intents):
 if __name__ == '__main__' : 
     while True:
         # TODO :  remove this line is production // break 
-        break ; 
+        # break ; 
         message = input("")
         intents = class_prediction(message.lower(), words, classes)
         result = random.choice(get_intent(intents, data)["responses"])
