@@ -20,16 +20,19 @@ def auth_user() -> None:
 
 # function to make HTTP:GET request 
 def get(resource:str):
-    global TOKEN
+    # global TOKEN
     auth_user()
-    return requests.get(f'{BASE_URL}/{resource}', headers={'Authorization': f'Token {TOKEN}'})
+    return requests.get(f'{BASE_URL}/{resource}')
+    # TODO : Add Token authentication to GET method 
+    # return requests.get(f'{BASE_URL}/{resource}', headers={'Authorization': f'Token {TOKEN}'})
 
 # Function to make HTTP:POST request
 def post(resource:str, payload:dict):
-    global TOKEN
+    # global TOKEN
     auth_user()
     return requests.post(
         f'{BASE_URL}/{resource}',
-        data=payload, 
-        headers={'Authorization': f'Token {TOKEN}'}
+        data=payload
+        # TODO : Add Token authentication to POST method 
+        # headers={'Authorization': f'Token {TOKEN}'}
     )

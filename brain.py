@@ -59,7 +59,7 @@ data = {
             "responses": ["Voici la liste des dernière connexions SSH"]
         },
         {
-            "tag": "stop_miai",
+            "tag": "stop_maia",
             "patterns": ["Au revoir", "A plus", "Bye", "Stop", "cya", "Au revoir"],
             "responses": ["C'était sympa de vous parler", "à plus tard", "A plus!"]
         }
