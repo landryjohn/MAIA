@@ -46,6 +46,54 @@ data = {
             "responses" : ["Salut", "Bonjour", "Hello !", "Hi"]
         },
         {
+            "tag" : "network_status",
+            "patterns" : [ "quel est l état du réseau", "quoi de neuf dans le réseau","quel est le statut de mon réseau",
+            "ce qu'il y a de nouveau dans mon réseau"
+
+            ], 
+            "responses" : ["l'état du réseau est le suivant","l'état est le suivant","le statut est le suivant"]
+        },
+        {
+            "tag" : "activity_status",
+            "patterns" : [ "je voudrais les activités du réseau","statut du réseau","rapport des alertes","information du jour"
+            ], 
+            "responses" : ["les activités sont"]
+        },
+        {
+            "tag" : "yesterday_activity_status",
+            "patterns" : [ "que s'est il passé hier dans mon réseau","qu'il y avait il dans mon réseau hier",
+                "les actualités d'hier", "combien d'analyse ont été effectuées hier","statut d'hier"
+            ], 
+            "responses" : ["les activités d'hier sont"]
+        },
+        {
+            "tag" : "general_activity_status",
+            "patterns" : [ "les activtés générales du réseau", "rapport général", "activités générales"
+            ], 
+            "responses" : ["le rapport général est le suivant"]
+        },
+        {
+            "tag" : "machine_network_summary",
+            "patterns" : ["rapport du monitoring réseau", "rapport des débits","rapport de la bande passante","rapport prtg",
+            "rapport du réseau"
+            ], 
+            "responses" : ["le rapport du monitoring est le suivant"]
+        },
+        {
+            "tag" : "machine_system_summary",
+            "patterns" : ["rapport du monitoring système","rapport cpu","rapport processeur","rapport ram",
+            "rapport système", "rapport disque", "rapport des machines du système"
+            ], 
+            "responses" : ["le rapport du système est le suivant"]
+        },
+        {
+            "tag" : "machine_services_summary",
+            "patterns" : ["rapport des services", "donne moi le rapport du service","rapport service","donne moi un rapport global du service"
+
+            ], 
+            "responses" : ["le rapport de service est le suivant"]
+        },
+        {
             "tag" : "red_code",
             "patterns" : ["code rouge", "code code rouge", "arrêter tout les services", "éteindre le réseau", 
                         "arrêter les serveurs", "stoper les serveur", "éteindre les serveurs", 
