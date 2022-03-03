@@ -12,7 +12,7 @@ USERNAME = config('USER_NAME')
 BOTNAME = config('BOTNAME')
 
 # set the TTS engine
-engine = pyttsx3.init('sapi5')
+engine = pyttsx3.init('espeak')
 
 # Set the rate of the assistant
 engine.setProperty('rate', 170)
@@ -49,8 +49,9 @@ def greet_user() -> None:
 def listen_to_user_input() -> str : 
     """Listen to user, make STT conversion using SAPI5"""
     r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print('👂 En écoute...')
+    with sr.Microphone(device_index=1) as source:
+        print('\n\n\n\n\n👂 En écoute...')
+        r.adjust_for_ambient_noise(source)
         r.pause_threshold = 2
         audio = r.listen(source)
 
