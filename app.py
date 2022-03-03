@@ -89,7 +89,7 @@ if __name__ == '__main__' :
     print(termcolor.colored(f.renderText('... MAIA ...'), 'yellow'))
     print(f"Bienvenue dans votre session {config('USER_NAME')}")
     # try :
-    #      TODO : Add APi authentication 
+    #      TODO : Add API authentication 
     #     api.auth_user()
     # except Exception as error:
     #     print(error)
@@ -111,34 +111,6 @@ if __name__ == '__main__' :
             # show_services_status
             resp = api.post("api/system_call/", {'method':'show_services_status'})
             print(resp.json()['message'])
-        elif intent["tag"] == 'signature_database' : 
-            say_random_answer(intent) 
-            # get_signature_database
-            resp = api.post("api/system_call/", {'method':'get_signature_database'})
-            print(resp.json()['message'])
-        elif intent["tag"] == 'simba_rules' :
-            say_random_answer(intent)
-            # show_simba_rules
-            resp = api.post("api/system_call/", {'method':'show_simba_rules'})
-            print(resp.json()['message'])
-        elif intent["tag"] == 'intrusion_report' : 
-            say_random_answer(intent)  
-            # get_intrusion_report
-            resp = api.post("api/system_call/", {'method':'get_intrusion_report'})
-            print(resp.json()['message'])
-        elif intent["tag"] == 'send_intrusion_report' : 
-            say_random_answer(intent)
-            # get_intrusion_report 
-        elif intent["tag"] == 'block_user_rule' : 
-            say_random_answer(intent)
-        elif intent["tag"] == 'add_rule' : 
-            say_random_answer(intent)  
-        elif intent["tag"] == 'firewall' : 
-            say_random_answer(intent)  
-        elif intent["tag"] == 'red_code' : 
-            say_random_answer(intent)  
-        elif intent["tag"] == 'ssh_connections' : 
-            say_random_answer(intent)  
-        elif intent["tag"] == 'stop_simba_client' : 
+        elif intent["tag"] == 'stop_maia' : 
             speak('Au revoir')
             exit()

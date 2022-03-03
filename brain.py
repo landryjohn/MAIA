@@ -46,57 +46,6 @@ data = {
             "responses" : ["Salut", "Bonjour", "Hello !", "Hi"]
         },
         {
-            "tag": "services_status",
-            "patterns": ["afficher l'état des services", "statut des services", "Je veux connaitre l'état des services", 
-                    "comment fonctionne le serveur", "fonctionnement du serveur", 
-                    "Etat de marche du serveur", "regime de fonctionnement", "fonctionnement des services"],
-            "responses": ["Voici le statut des services", "voici le rapport de fonctionnement des services", "fonctionnement des services"]
-        },
-        {
-            "tag": "signature_database",
-            "patterns": ["afficher la base de signatures", "montrer la base virale", "afficher la liste des règles", 
-                "règle de l'IDS", "signatures des attaques", "liste des attaques", "liste des règles", "Montre moi les règles"],
-            "responses": ["Voici la base de signature", "Voici la base de signature la plus à jour"]
-        },
-        {
-            "tag": "simba_rules",
-            "patterns": ["quelles sont le fichier des règles d'alerte", "quelles sont tes règles", "montre moi le fichier règles", 
-            "fichier de règle de simba", "affiche le fichier des règles", "fichier de règle"],
-            "responses": ["voici le contenu du fichier de règle personnalisé"]
-        },
-        {
-            "tag" : "intrusion_report",
-            "patterns" : ["je veux le rapport d'intrusion dans le réseau", "rapport d'intrusion dans le réseau", 
-                    "liste des intrusions dans le réseau", "rappoort d'alertes", "liste alertes", "log des alertes", 
-                    "afficher les attaques", "affiches les alertes", "montre moi les alertes", "liste des attaques "], 
-            "responses" : ["Voici la liste des alertes de ce jours"]
-        },
-        {
-            "tag" : "send_intrusion_report", 
-            "patterns" : ["envoi moi le rapport d'intrusion", "envoi du rapport d'alert", "envoyer le rapport par mail", 
-                    "envoyer les alertes dans le réseau par mail"],
-            "responses" : ["Envoi du rapport d'intrusion"]
-        }, 
-        {
-            "tag" : "block_user_rule",
-            "patterns" : ["bloque un utilisateur", "bloque une machine", "stop une machine", 
-                        "stop une adresse machine", "arrêter un utilisateur"],
-            "responses" : ["blocage d'une utilisateur"]
-        },
-        {
-            "tag" : "add_rule", 
-            "patterns" : ["ajouter une règle", "définir une règle","ajout d'une règle", 
-                        "ajoute une règle", "je veux ajouter une règle", "je veux modifier les règles"], 
-            "responses" : ["Ajout d'une règle"]
-        },
-        {
-            "tag" : "firewall",
-            "patterns" : ["pare-feu", "pare feu", "parefeu" "afficher la configuration du pare-feu", 
-                        "afficher les règles du pare-feu", "afficher le pare-feu", "afficher la table ACL"
-                        "configuration pare-feu"],
-            "responses" : ["Voici la configuration actuel du pare-feu"]
-        }, 
-        {
             "tag" : "red_code",
             "patterns" : ["code rouge", "code code rouge", "arrêter tout les services", "éteindre le réseau", 
                         "arrêter les serveurs", "stoper les serveur", "éteindre les serveurs", 
@@ -110,7 +59,7 @@ data = {
             "responses": ["Voici la liste des dernière connexions SSH"]
         },
         {
-            "tag": "stop_simba_client",
+            "tag": "stop_miai",
             "patterns": ["Au revoir", "A plus", "Bye", "Stop", "cya", "Au revoir"],
             "responses": ["C'était sympa de vous parler", "à plus tard", "A plus!"]
         }
@@ -139,7 +88,7 @@ classes = sorted(set(classes))
 
 """
 Une fois lancée, cette fonction permet de construire et d'entrainer le modèle.
-Le modèle issue est sauvegardé dans une fichier simba_model au format HDF5
+Le modèle issue est sauvegardé dans une fichier maia_model au format HDF5
 """
 def train_model() -> None:
     global model 
@@ -169,7 +118,7 @@ def train_model() -> None:
     output_shape = len(train_y[0])
     epochs = 200
 
-    # Modèle Deep Learning de Simba
+    # Modèle Deep Learning de MAIA
     model = Sequential()
     # Couche d'entrée du réseau de neurones
     model.add(Dense(128, input_shape=input_shape, activation="relu"))
@@ -194,7 +143,7 @@ def train_model() -> None:
     model.fit(x=train_X, y=train_y, epochs=200, verbose=1)
 
     # sauvegarde du modèle
-    model.save('simba_model.hdf5')
+    model.save('maia_model.hdf5')
 
     # Affichage du bilan de l'entrainement
     print("***************************************")
@@ -204,7 +153,7 @@ def train_model() -> None:
     print("***************************************")
 
 # Chargement du modèle le plus à jour
-model = load_model('simba_model.hdf5')
+model = load_model('maia_model.hdf5')
 
 # fonction utilisée pour reformater l'entrée de l'utilisateur 
 # en utilisant un tokeniseur et le lemmatiseur
