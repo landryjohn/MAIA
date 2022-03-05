@@ -49,7 +49,7 @@ def greet_user() -> None:
 def listen_to_user_input() -> str : 
     """Listen to user, make STT conversion using SAPI5"""
     r = sr.Recognizer()
-    with sr.Microphone(device_index=1) as source:
+    with sr.Microphone(device_index=2) as source:
         print('\n\n\n\n\n👂 En écoute...')
         r.adjust_for_ambient_noise(source)
         r.pause_threshold = 2
@@ -74,7 +74,7 @@ def say_random_answer(intent):
     speak(choice(intent["responses"]))
 
 if __name__ == '__main__' :
-    output = os.system("cls")
+    output = os.system("clear")
     count = 0 
     Authenticated = False 
     while not Authenticated : 
