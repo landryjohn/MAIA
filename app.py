@@ -7,12 +7,14 @@ from functions import api
 from datetime import datetime
 import brain
 import termcolor, pyfiglet
+import platform
 
 USERNAME = config('USER_NAME')
 BOTNAME = config('BOTNAME')
+TTS_DRIVER = 'sapi5' if 'windows' in platform.system().lower() else 'espeak'
 
 # set the TTS engine
-engine = pyttsx3.init('espeak')
+engine = pyttsx3.init(TTS_DRIVER)
 
 # Set the rate of the assistant
 engine.setProperty('rate', 170)
@@ -31,8 +33,10 @@ api.BASE_URL = config('BASE_URL')
 def speak(text:str) -> None :
     """Write the text passed in parameter"""
     print(f"🤖 {BOTNAME} parle...")
-    engine.say(text)
-    engine.runAndWait()
+    # TODO : Addapt this to tts process 
+    print(f"{BOTNAME} : {text}")
+    # engine.say(text)
+    # engine.runAndWait()
 
 def greet_user() -> None:
     """Greets the user according to the time"""
@@ -49,15 +53,18 @@ def greet_user() -> None:
 def listen_to_user_input() -> str : 
     """Listen to user, make STT conversion using SAPI5"""
     r = sr.Recognizer()
-    with sr.Microphone(device_index=2) as source:
-        print('\n\n\n\n\n👂 En écoute...')
-        r.adjust_for_ambient_noise(source)
-        r.pause_threshold = 2
-        audio = r.listen(source)
+    # TODO : Addapt this to STT process 
+    # with sr.Microphone(device_index=2) as source:
+    #     print('\n\n\n\n\n👂 En écoute...')
+    #     r.adjust_for_ambient_noise(source)
+    #     r.pause_threshold = 2
+    #     audio = r.listen(source)
 
     try:
         print('🤖 Traitement...')
-        query = r.recognize_google(audio, language='fr-FR')
+        # TODO : change how user input query from manuel to STT
+        # query = r.recognize_google(audio, language='fr-FR')
+        query = input(">>> Saisir votre requête : ")
         if any([el in query for el in ['arrêter', 'sortir', 'arrêt', 'fin', 'terminer']]):
             speak('Au revoir')
             exit()
@@ -103,7 +110,7 @@ if __name__ == '__main__' :
         if query == "" : continue 
         intents = brain.class_prediction(query.lower(), brain.words, brain.classes)
         intent = brain.get_intent(intents, brain.data)
-        
+        print(intent["tag"])
         if intent["tag"] == 'grettings' : 
             say_random_answer(intent)
             speak("Comment puis-je vous aider ?")

@@ -47,7 +47,7 @@ data = {
         },
         {
             "tag" : "network_status",
-            "patterns" : [ "quel est l état de fonctionnement du réseau", "quoi de neuf dans le réseau","quel est le statut de mon réseau",
+            "patterns" : [ "quel est l'état de fonctionnement du réseau", "quoi de neuf dans le réseau","quel est le statut de mon réseau",
             "ce qu'il y a de nouveau dans mon réseau"
             ], 
             "responses" : ["l'état du réseau est le suivant","l'état est le suivant","le statut est le suivant"]
