@@ -8,6 +8,7 @@ from datetime import datetime
 import brain
 import termcolor, pyfiglet
 import platform
+from functions import zabbix_api
 
 USERNAME = config('USER_NAME')
 BOTNAME = config('BOTNAME')
@@ -114,11 +115,20 @@ if __name__ == '__main__' :
         if intent["tag"] == 'grettings' : 
             say_random_answer(intent)
             speak("Comment puis-je vous aider ?")
-        elif intent["tag"] == 'services_status' :
+        elif intent["tag"] == 'network_status' :
             say_random_answer(intent)
-            # show_services_status
-            resp = api.post("api/system_call/", {'method':'show_services_status'})
-            print(resp.json()['message'])
+            resp = zabbix_api.network_status()
+            print(resp)
+        elif intent["tag"] == 'activity_status' :
+            say_random_answer(intent)
+            resp = zabbix_api.activity_status()
+            print(resp)
+        elif intent["tag"] == 'red_code' :
+            say_random_answer(intent)
+            print(termcolor.colored("[!] ACTIVATION DU CODE ROUGE [!]", color='red'))
         elif intent["tag"] == 'stop_maia' : 
             speak('Au revoir')
             exit()
+        else :
+            print(f"Commande : {intent['tag']}")
+            speak('La fonctionnalité est en cours de développement')

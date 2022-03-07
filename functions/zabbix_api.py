@@ -28,7 +28,7 @@ def activity_status() -> str :
     """Permet d'avoir la liste des dernières alertes"""      
     problems = zapi.problem.get()
     resp = '**************************************************\n'
-    resp += termcolor.colored("LISTE DES PROBLEMES DANS LE RESEAU", color='red') 
+    resp += termcolor.colored("LISTE DES ALERTES DANS LE RESEAU", color='red') 
     resp += '\n**************************************************'
     for problem in problems :
         host = zapi.event.get(eventids=problem['eventid'], selectHosts = ["host","name"])[0]['hosts'][0]['host']
